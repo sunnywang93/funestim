@@ -1,0 +1,37 @@
+Package: funestim
+Type: Package
+Title: Nonparametric Kernel Smoothing Methods for Functional Data
+Version: 1.0.0
+Date: 2019-04-26
+Depends: R (>= 2.10)
+Authors@R: person("Steven", "Golovkine", 
+                email = "steven_golovkine@icloud.com", 
+                role = c("aut", "cre"))
+Maintainer: Steven Golovkine <steven_golovkine@icloud.com>
+Description: Nonparametric kernel smoothing methods that perform adaptive
+  optimal estimation of irregular mean and covariance functions in functional
+  data context. Code for the paper `Adaptive optimal estimation of irregular
+  mean and covariance functions`, S. Golovkine, N. Klutchnikoff, V. Patilea
+  (2021).
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/StevenGolovkine/funestim
+BugReports: https://github.com/StevenGolovkine/funestim/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo   
+Imports:
+    fdapace (>= 0.5.6),
+    funData (>= 1.3-4),
+    KernSmooth (>= 2.23-16),
+    magrittr (>= 1.5),
+    purrr (>= 0.3.3),
+    Rcpp (>= 1.0.6),
+    RcppArmadillo (>= 0.9.800.1.0),
+Suggests:
+    knitr (>= 1.26),
+    rmarkdown (>= 2.0),
+    testthat (>= 2.1.0)
+VignetteBuilder: knitr

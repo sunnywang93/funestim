@@ -45,7 +45,8 @@ estimate_curve <- function(curve, U, b, t0_list = NULL,
     bandwidth <- rep(b, length(U))
   } else if ((length(b) != length(U)) & !is.null(t0_list)) {
     bandwidth <- stats::approx(t0_list, b, xout = U,
-                               yleft = b[1], yright = b[length(b)])$y
+                               yleft = b[1], yright = b[length(b)],
+                               ties = 'ordered')$y
   } else if (length(b) == length(U)) {
     bandwidth <- b
   } else {

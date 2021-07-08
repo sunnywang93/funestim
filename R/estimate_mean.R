@@ -59,7 +59,7 @@ mean_ll <- function(data, U = seq(0, 1, length.out = 101), t0_list = 0.5,
 #'   \item \strong{$t} The sampling points
 #'   \item \strong{$x} The observed points.
 #'  }
-#' @param U Vector, sampling points at which estimate the curves.
+#' @param U Vector, sampling points at which estimate the mean.
 #' 
 #' @return A vector representing the mean curve.
 #'  
@@ -80,15 +80,13 @@ mean_ss <- function(data, U){
 #' local linear smoothers where the bandwidth is estimated using the 
 #' methodology from Zhang et Wang (2016).
 #' 
-#' @importFrom magrittr %>%
-#' 
 #' @param data A list, where each element represents a curve. Each curve have to
 #'  be defined as a list with two entries:
 #'  \itemize{
 #'   \item \strong{$t} The sampling points
 #'   \item \strong{$x} The observed points.
 #'  } 
-#' @param U Vector, sampling points at which estimate the curves.
+#' @param U Vector, sampling points at which estimate the mean.
 #' 
 #' @return A vector representing the mean curve.
 #' 

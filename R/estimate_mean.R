@@ -30,8 +30,8 @@
 #' 
 #' @return A list of with two entries:
 #'  \itemize{
-#'   \item \strong{$t} The sampling points (equal to U)
-#'   \item \strong{$x} The observed points.
+#'   \item \strong{$parameter} The estimated parameters.
+#'   \item \strong{$mu} The estimated mean.
 #'  }
 #' 
 #' @references Golovkine S., Klutchnikoff N., Patilea V. (2021) - Adaptive
@@ -104,3 +104,4 @@ mean_lll <- function(data, U) {
                              nRegGrid = length(U),
                              methodBwMu = 'GCV'))$mu
 }
+# ----

@@ -50,7 +50,6 @@ estimate_sigma <- function(data, t0_list, k0_list){
       }
     )
 }
-
 # ----
 
 # Estimate the different quantities using pre-smoothing ----
@@ -181,4 +180,48 @@ estimate_L0 <- function(data, H0_list, M) {
   unname(sqrt(colMeans(V_mean, na.rm = TRUE)))
 }
 
+#' Perform the estimation of the moments.
+#'
+#' This function performs an estimation of the moments used for the estimation 
+#' of the bandwidth for a univariate kernel regression estimator defined over 
+#' continuous domains data.
+#'
+#' @importFrom magrittr %>%
+#' @family estimate moment
+#' 
+#' @param data List of array, resulting from the pre-smoothing function.
+#' @param order Numeric (default=1), the moment to estimate.
+#'
+#' @return Vector, estimation of the moments.
+#' @references Golovkine S., Klutchnikoff N., Patilea V. (2021) - Adaptive
+#'  estimation of irregular mean and covariance functions.
+#' @export
+estimate_moment <- function(data, order = 1) {
+  data %>% purrr::map_dbl(~ mean(.x$x[, 6]**order, na.rm = TRUE))
+}
+
+#' Perform the estimation of \eqn{Var(X_{s}X_{t)}}.
+#'
+#' This function performs an estimation of  \eqn{Var(X_{s}X_{t)}} used for the 
+#' estimation of the bandwidth for a univariate kernel regression estimator 
+#' defined over continuous domains data.
+#'
+#' @importFrom magrittr %>%
+#' @family estimate variance
+#' 
+#' @param data List of array, resulting from the pre-smoothing function.
+#'
+#' @return Vector, estimation of \eqn{Var(X_{s}X_{t)}}.
+#' @references Golovkine S., Klutchnikoff N., Patilea V. (2021) - Adaptive
+#'  estimation of irregular mean and covariance functions.
+#' @export
+variance <- function(data) {
+  var_st <- matrix(NA, nrow = length(data), ncol = length(data))
+  for(i in 1:length(data)){
+    for(j in 1:length(data)){
+      var_st[i, j] <- stats::var(data[[i]]$x[, 6] * data[[j]]$x[,6], na.rm = TRUE)
+    }
+  }
+  as.vector(var_st)
+}
 # ----

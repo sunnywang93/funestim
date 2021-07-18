@@ -14,7 +14,7 @@ be defined as a list with two entries:
 \item \strong{$x} The observed points.
 }}
 
-\item{U}{Vector, sampling points at which estimate the curves.}
+\item{U}{Vector, sampling points at which estimate the mean.}
 }
 \value{
 A vector representing the mean curve.

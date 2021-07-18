@@ -2,7 +2,6 @@
 #        Functions that performs kernel smoothing over a set of curves         #
 ################################################################################
 
-
 #' Perform the smoothing of an individual curve.
 #'
 #' This function performs the smoothing of a curve using the Nadaraya-Watson 
@@ -142,3 +141,4 @@ smooth_curves <- function(data, U = NULL, t0_list = 0.5, grid = NULL,
   }
   list("parameter" = param_estim, "smooth" = curves)
 }
+# ----

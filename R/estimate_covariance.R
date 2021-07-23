@@ -42,14 +42,13 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
       mean(na.rm = TRUE)
   }
   
+  if(!centered){
+    mean_global <- mean(purrr::map_dbl(data, ~ mean(.x$x)))
+    data <- data %>% purrr::map(~ list(t = .x$t, x = .x$x - mean_global))
+  }
+  
   if(!inherits(data, 'list')) data <- checkData(data)
   mu_estim <- mean_ll(data, U = U, t0_list = t0_list)
-  
-  if(!centered){
-     mean_global <- mean(purrr::map_dbl(data, ~ mean(.x$x)))
-     data <- data %>% purrr::map(~ list(t = .x$t, x = .x$x - mean_global))
-     print('Coucou')
-  }
   
   # Estimation of the parameters
   Mi <- data %>% purrr::map_dbl(~ length(.x$t))

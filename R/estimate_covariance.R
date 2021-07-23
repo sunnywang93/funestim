@@ -19,6 +19,7 @@
 #' @param U Vector, sampling points at which estimate the curves.
 #' @param t0_list Vector, the sampling points at which we estimate the 
 #'  parameters.
+#' @param centered Boolean (default=FALSE), are the data centered?
 #' 
 #' @return A list of with three entries:
 #'  \itemize{
@@ -31,7 +32,8 @@
 #'  estimation of irregular mean and covariance functions.
 #' @export
 covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
-                          t0_list = seq(0.1, 0.9, by = 0.1)){
+                          t0_list = seq(0.1, 0.9, by = 0.1),
+                          centered = FALSE){
   # Inner function to compute the covariance on a particular point (s, t)
   gamma_st <- function(data, s0, t0, b, n_obs_min = 2){
     data %>%
@@ -42,6 +44,11 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
   
   if(!inherits(data, 'list')) data <- checkData(data)
   mu_estim <- mean_ll(data, U = U, t0_list = t0_list)
+  
+  if(!centered){
+     mean_global <- mean(purrr::map_dbl(data, ~ mean(.x$x)))
+     data <- data %>% purrr::map(~ list(t = .x$t, x = .x$x - mean_global))
+  }
   
   # Estimation of the parameters
   Mi <- data %>% purrr::map_dbl(~ length(.x$t))

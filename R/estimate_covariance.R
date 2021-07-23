@@ -9,6 +9,8 @@
 #' methodology from Golovkine et al. (2021).
 #' 
 #' @importFrom magrittr %>%
+#' @importFrom dplyr mutate filter
+#' @importFrom rlang rlang::.data
 #' 
 #' @param data A list, where each element represents a curve. Each curve have to
 #'  be defined as a list with two entries:
@@ -74,9 +76,13 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
     )
   
   zz_nodiag <- zz %>% 
-    dplyr::filter(is_upper) %>% 
+    dplyr::filter(rlang::.data$is_upper) %>% 
     dplyr::mutate(b = purrr::pmap_dbl(
-      list(s, t, H0_s, H0_t, L0_s, L0_t, mom2_s, mom2_t, var_st),
+      list(rlang::.data$s, rlang::.data$t, 
+           rlang::.data$H0_s, rlang::.data$H0_t,
+           rlang::.data$L0_s, rlang::.data$L0_t, 
+           rlang::.data$mom2_s, rlang::.data$mom2_t, 
+           rlang::.data$var_st),
       function(s, t, H0_s, H0_t, L0_s, L0_t, mom2_s, mom2_t, var_st){
         estimate_bandwidth_covariance(data, s, t, 
                                       H0 = c(H0_s, H0_t), 
@@ -99,8 +105,8 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
   cov_df <- tidyr::expand_grid(s = U, t = U)
   cov_df <- cov_df %>% 
     dplyr::mutate(is_upper = t <= s, b = as.vector(bb_large)) %>%
-    dplyr::filter(is_upper) %>% 
-    dplyr::mutate(cov = purrr::pmap_dbl(list(s, t, b), gamma_st, 
+    dplyr::filter(rlang::.data$is_upper) %>% 
+    dplyr::mutate(cov = purrr::pmap_dbl(list(s, t, rlang::.data$b), gamma_st, 
                                         data = data, n_obs_min = 2))
 
   prod_mu <- mu_estim$mu %*% t(mu_estim$mu)
@@ -142,6 +148,8 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
 #' 
 #' This function performs the estimation of the covariance of a set of curves
 #' using smoothing splines.
+#' 
+#' @importFrom gss ssanova
 #' 
 #' @param data A list, where each element represents a curve. Each curve have to
 #'  be defined as a list with two entries:
@@ -225,7 +233,8 @@ covariance_lll <- function(data, U, b = 0.1){
   data_ <- list2cai(data)
   L3 <- fdapace::MakeFPCAInputs(IDs = data_$obs, 
                                 tVec = data_$time, 
-                                yVec = data_$x)
+                                yVec = data_$x,
+                                deduplicate = TRUE)
   fdapace::GetCovSurface(L3$Ly, L3$Lt, 
                          list(kernel = 'epan',
                               nRegGrid = length(U),

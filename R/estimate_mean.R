@@ -98,7 +98,8 @@ mean_lll <- function(data, U) {
   data_ <- list2cai(data)
   L3 <- fdapace::MakeFPCAInputs(IDs = data_$obs,
                                 tVec = data_$time,
-                                yVec = data_$x)
+                                yVec = data_$x,
+                                deduplicate = TRUE)
   fdapace::GetMeanCurve(L3$Ly, L3$Lt, 
                         list(kernel = 'epan', 
                              nRegGrid = length(U),

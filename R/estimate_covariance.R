@@ -48,6 +48,7 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
   if(!centered){
      mean_global <- mean(purrr::map_dbl(data, ~ mean(.x$x)))
      data <- data %>% purrr::map(~ list(t = .x$t, x = .x$x - mean_global))
+     print('Coucou')
   }
   
   # Estimation of the parameters

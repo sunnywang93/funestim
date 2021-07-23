@@ -7,7 +7,8 @@
 covariance_ll(
   data,
   U = seq(0, 1, length.out = 101),
-  t0_list = seq(0.1, 0.9, by = 0.1)
+  t0_list = seq(0.1, 0.9, by = 0.1),
+  centered = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ be defined as a list with two entries:
 
 \item{t0_list}{Vector, the sampling points at which we estimate the
 parameters.}
+
+\item{centered}{Boolean (default=FALSE), are the data centered?}
 }
 \value{
 A list of with three entries:

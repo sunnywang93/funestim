@@ -31,14 +31,23 @@ please use
 devtools::install_github("StevenGolovkine/funestim")
 ```
 
+To build the vignette as well, please use
+``` r
+# install.packages("devtools")
+devtools::install_github("StevenGolovkine/funestim", build_vignettes = TRUE)
+```
+
 ## Dependencies
 
-The `funestim` package depends on the `R`-packages [`fdapace`](https://CRAN.R-project.org/package=fdapace),
+The `funestim` package depends on the `R`-packages [`dplyr`](https://CRAN.R-project.org/package=dplyr),
+[`fdapace`](https://CRAN.R-project.org/package=fdapace),
 [`funData`](https://CRAN.R-project.org/package=funData),
+[`gss`](https://CRAN.R-project.org/package=gss),
 [`KernSmooth`](https://CRAN.R-project.org/package=KernSmooth), [`magrittr`](https://CRAN.R-project.org/package=magrittr),
 [`purrr`](https://CRAN.R-project.org/package=purrr),
 [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
 [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo),
+[`tidyr`](https://CRAN.R-project.org/package=tidyr),
 
 ## References
 

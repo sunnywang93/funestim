@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 # funestim
 
 <!-- badges: start -->
+[![Build Status](https://travis-ci.com/StevenGolovkine/funestim.svg?branch=master)](https://travis-ci.com/StevenGolovkine/funestim)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/645f6c4a3f8548219ef4cfc8ea74e361)](https://www.codacy.com/gh/StevenGolovkine/funestim/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StevenGolovkine/funestim&amp;utm_campaign=Badge_Grade)
 <!-- badges: end -->
 
 `funestim` is an `R`-package that allows users to estimate the mean and the

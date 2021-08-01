@@ -9,6 +9,7 @@
 Status](https://travis-ci.com/StevenGolovkine/funestim.svg?branch=master)](https://travis-ci.com/StevenGolovkine/funestim)
 [![Codacy
 Badge](https://app.codacy.com/project/badge/Grade/645f6c4a3f8548219ef4cfc8ea74e361)](https://www.codacy.com/gh/StevenGolovkine/funestim/dashboard?utm_source=github.com&utm_medium=referral&utm_content=StevenGolovkine/funestim&utm_campaign=Badge_Grade)
+[![DOI](https://zenodo.org/badge/362427640.svg)](https://zenodo.org/badge/latestdoi/362427640)
 <!-- badges: end -->
 
 `funestim` is an `R`-package that allows users to estimate the mean and
@@ -37,10 +38,11 @@ devtools::install_github("StevenGolovkine/funestim", build_vignettes = TRUE)
 The `funestim` package depends on the `R`-packages
 [`dplyr`](https://CRAN.R-project.org/package=dplyr),
 [`fdapace`](https://CRAN.R-project.org/package=fdapace),
-[`funData`](https://CRAN.R-project.org/package=funData),
+[`funData`](https://github.com/ClaraHapp/funData),
 [`gss`](https://CRAN.R-project.org/package=gss),
 [`KernSmooth`](https://CRAN.R-project.org/package=KernSmooth),
 [`magrittr`](https://CRAN.R-project.org/package=magrittr),
+[`MASS`](https://CRAN.R-project.org/package=MASS),
 [`purrr`](https://CRAN.R-project.org/package=purrr),
 [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
 [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo),

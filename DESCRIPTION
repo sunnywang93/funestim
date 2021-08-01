@@ -29,6 +29,7 @@ Imports:
     gss (>= 2.2-2),
     KernSmooth (>= 2.23-16),
     magrittr (>= 1.5),
+    MASS (>= 7.3.50),
     purrr (>= 0.3.3),
     Rcpp (>= 1.0.6),
     RcppArmadillo (>= 0.9.800.1.0),

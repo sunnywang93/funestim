@@ -193,7 +193,8 @@ estimate_bandwidth_covariance <- function(data, s0, t0,
                                           variance = 0,
                                           grid = NULL,
                                           nb_obs_minimal = 2, 
-                                          type_k = 2) {
+                                          type_k = 2,
+                                          under = 1.1) {
   if(!inherits(data, 'list')) data <- checkData(data)
   if(is.null(grid)) grid <- lseq(0.01, 0.1, length.out = 41)
   
@@ -235,6 +236,6 @@ estimate_bandwidth_covariance <- function(data, s0, t0,
       q2_s**2 / Ngammas + q2_t**2 / Ngammat +
       q3**2 / WN
   }
-  grid[which.min(risk)]**1.1
+  grid[which.min(risk)]**under
 }
 # ----

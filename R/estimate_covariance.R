@@ -34,7 +34,8 @@
 #' @export
 covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
                           t0_list = seq(0.1, 0.9, by = 0.1),
-                          centered = FALSE){
+                          centered = FALSE,
+                          under_param = 1.1){
   # Inner function to compute the covariance on a particular point (s, t)
   gamma_st <- function(data, s0, t0, b, n_obs_min = 2){
     data %>%
@@ -90,7 +91,8 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
                                       sigma = sigma_estim, 
                                       variance = var_st, 
                                       nb_obs_minimal = 2, 
-                                      type_k = 3)
+                                      type_k = 3,
+                                      under = under_param)
         }
       )
     )

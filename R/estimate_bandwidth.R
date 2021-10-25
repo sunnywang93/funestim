@@ -235,6 +235,6 @@ estimate_bandwidth_covariance <- function(data, s0, t0,
       q2_s**2 / Ngammas + q2_t**2 / Ngammat +
       q3**2 / WN
   }
-  grid[which.min(risk)]**1.11
+  grid[which.min(risk)]**1.1
 }
 # ----

@@ -115,7 +115,7 @@ covariance_ll <- function(data, U = seq(0, 1, length.out = 101),
   
   # Create the final covariance
   res <- matrix(0, nrow = length(U), ncol = length(U))
-  res[upper.tri(res, diag = TRUE)] <- cov_df$cov - prod_mu
+  res[upper.tri(res, diag = TRUE)] <- cov_df$cov
   for(t in 1:ncol(res)){
     s <- 1
     current_cov <- res[s, t - s + 1]
